@@ -8,7 +8,7 @@ export default function App() {
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    async function fetchCountry(){
+    async function getCountries(){
       try{
         let data = await axios.get('https://restcountries.com/v3.1/all')
         setAllCountries(data.data);
@@ -18,7 +18,7 @@ export default function App() {
         console.error("Error fetching data: ", error)
       }
     };
-    fetchCountry();
+    getCountries();
   }, []);
 
   const handleSearch = (e) => {
