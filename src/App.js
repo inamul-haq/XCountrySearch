@@ -30,7 +30,7 @@ export default function App() {
     setFilteredCountries(filtered);
   };
 
-  const cardStyle = {
+  const countryCard = {
     width: "200px",
     border: "1px solid #ccc",
     borderRadius: "10px",
@@ -79,7 +79,7 @@ export default function App() {
       </div>
     <div style={containerStyle}>
       {filteredCountries.map((country) => (
-        <div key={country.cc3} style={cardStyle}>
+        <div key={country.cc3} style={countryCard}>
           <img
             src={country.flags.png}
             alt={`Flag of ${country.name.common}`}
