@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function App() {
   const [allCountries, setAllCountries] = useState([]);
@@ -7,14 +8,17 @@ export default function App() {
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data)
-        setAllCountries(data);
-        setFilteredCountries(data);
-      })
-      .catch((error) => console.error("Error fetching data: ", error));
+    async function fetchCountry(){
+      try{
+        let data = await axios.get('https://restcountries.com/v3.1/all')
+        setAllCountries(data.data);
+        setFilteredCountries(data.data);
+      }
+      catch(error){
+        console.error("Error fetching data: ", error)
+      }
+    };
+    fetchCountry();
   }, []);
 
   const handleSearch = (e) => {
